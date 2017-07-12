@@ -1,0 +1,38 @@
+<div *ngIf="movie">
+  <h2>{{movie.title}} ({{movie.year }}) details!</h2>
+  <div>
+    <label>id: </label>{{movie.id}}
+  </div>
+  <div>
+    <label for="title">Title: </label>
+    <input id="title" [(ngModel)]="movie.title" placeholder="title" required />
+  </div>
+  <div>
+    <label for="year">Year: </label>
+    <input id="year" [(ngModel)]="movie.year" placeholder="year" />
+  </div>
+  <div>
+    <label for="rating">Rating: </label>
+    <input id="rating" [(ngModel)]="movie.rating" placeholder="rating (1-5)" />
+  </div>
+  <div>
+    <label for="Genre">Genres: </label>
+    <ul>
+      <li *ngFor="let genre of movie.genres">
+        {{ genre.name }}
+      </li>
+    </ul>
+    <input id="Genre" placeholder="Add Genre" />
+  </div>
+  <div>
+    <label for="Actors">Actors: </label>
+    <ul>
+      <li *ngFor="let actor of movie.actors">
+        {{ actor.firstName }} {{ actor.lastName }}
+      </li>
+    </ul>
+    <input id="Actors" placeholder="Add Actor" />
+  </div>
+  <button (click)="goBack()">Back</button>
+  <button (click)="save()">Save</button>
+</div>

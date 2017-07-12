@@ -1,0 +1,13 @@
+##### Ignored Files #####
+node_modules/
+lib/
+src/**/**/*.js
+src/**/**/*.js.map
+*.map
+_test-output/
+npm-debug.log.*
+
+
+#### Allowed Files ####
+!src/systemjs.config.extras.js
+!src/systemjs.config.js

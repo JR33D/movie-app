@@ -1,0 +1,37 @@
+<div id="search-component">
+  <h4>Search for a Movie</h4>
+  <fieldset class="search">
+    <legend>Search:</legend>
+    <h5>Movie Properties</h5>
+    <div id="movieSearchProperties">
+      <span>
+        <label for="title">Title:</label> 
+        <input #searchTitle id="title" type="text" (keyup)="searchTitle(searchTitle.value)">
+      </span>
+      <span>
+        <label for="genre">Genre:</label>
+        <input #searchGenre id="genre" type="text" (keyup)="searchGenre(searchGenre.value)">
+      </span>
+      <span>
+        <label for="year">Year:</label>
+        <input #searchYear id="year" type="text" (keyup)="searchYear(searchYear.value)">
+      </span>
+    </div>
+    <h5>Actor Properties</h5>
+    <div id="actorSearchProperties">
+      <span>
+        <label for="actorFirstName">Actor First Name:</label> 
+        <input #aFirstName id="actorFirstName" type="text" (keyup)="searchActorFirstName(aFirstName.value)">
+      </span>
+      <span>
+        <label for="actorLastName">Actor Last Name:</label>
+        <input #aLastName id="actorLastName" type="text" (keyup)="searchActorLastName(aLastName.value)">
+      </span>
+    </div>
+  </fieldset>
+  <div>
+    <div *ngFor="let movie of movies | async" (click)="gotoDetail(movie)" class="search-result">
+      {{movie.name}}
+    </div>
+  </div>
+</div>
