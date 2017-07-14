@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
+import { Router } from '@angular/router';
 
-import { Observable }        from 'rxjs/Observable';
-import { Subject }           from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 // Observable class extensions
 import 'rxjs/add/observable/of';
@@ -18,29 +18,29 @@ import { Movie } from '../models/movie';
 @Component({
   selector: 'movie-search',
   templateUrl: 'app/templates/movie-search.component.html',
-  styleUrls: [ 'app/content/movie-search.component.css' ],
+  styleUrls: ['app/content/movie-search.component.css'],
   providers: [MovieSearchService]
 })
 export class MovieSearchComponent implements OnInit {
-  movies: Observable<Movie[]>;
-  private searchTerms = new Subject<string>();
+  movies: Observable<{} | Movie[]>;
+  private searchTerms = new Subject<IQuery>();
 
   constructor(
     private movieSearchService: MovieSearchService,
-    private router: Router) {}
+    private router: Router) { }
 
   // Push a search term into the observable stream.
-  search(term: string): void {
-    this.searchTerms.next(term);
+  search(prop: string, term: string): void {
+    this.searchTerms.next({ prop: prop, term: term });
   }
 
   ngOnInit(): void {
     this.movies = this.searchTerms
       .debounceTime(300)        // wait 300ms after each keystroke before considering the term
       .distinctUntilChanged()   // ignore if next search term is same as previous
-      .switchMap((term: string) => term   // switch to new observable each time the term changes
+      .switchMap((query: IQuery) => query   // switch to new observable each time the term changes
         // return the http search observable
-        ? this.movieSearchService.search(term)
+        ? this.movieSearchService.search(query.prop, query.term)
         // or the observable of empty movies if there was no search term
         : Observable.of<Movie[]>([]))
       .catch((error: string) => {
@@ -54,4 +54,9 @@ export class MovieSearchComponent implements OnInit {
     let link = ['/detail', movie.id];
     this.router.navigate(link);
   }
+}
+
+interface IQuery {
+  prop: string;
+  term: string;
 }

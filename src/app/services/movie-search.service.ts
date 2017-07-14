@@ -12,21 +12,9 @@ export class MovieSearchService {
 
   constructor(private http: Http) { }
 
-  searchTitle(title: string): Observable<Movie[]> {
+  search(prop: string, term: string) {
     return this.http
-      .get(`api/Movies/?title=${title}`)
-      .map(response => response.json().data as Movie[]);
-  }
-
-  searchYear(year: string): Observable<Movie[]> {
-    return this.http
-      .get(`api/Movies/?year=${year}`)
-      .map(response => response.json().data as Movie[]);
-  }
-
-  searchGenre(genre: string): Observable<Movie[]> {
-    return this.http
-      .get(`api/Movies/?genre=${genre}`)
+      .get(`api/Movies/?${prop}=${term}`)
       .map(response => response.json().data as Movie[]);
   }
 

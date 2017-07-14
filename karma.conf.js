@@ -1,10 +1,10 @@
 module.exports = function(config) {
 
-  var appBase    = 'src/';       // transpiled app JS and map files
-  var appSrcBase = appBase;      // app source TS files
+  var appBase    = 'dist/app/';       // transpiled app JS and map files
+  var appSrcBase = 'src/app/';      // app source TS files
 
   // Testing helpers (optional) are conventionally in a folder called `testing`
-  var testingBase    = 'src/tests/'; // transpiled test JS and map files
+  var testingBase    = 'dist/tests/'; // transpiled test JS and map files
   var testingSrcBase = 'src/tests/'; // test source TS files
 
   config.set({
@@ -27,11 +27,14 @@ module.exports = function(config) {
 
     files: [
       // System.js for module loading
-      'node_modules/systemjs/dist/system-polyfills.src.js',
+      //'node_modules/systemjs/dist/system-polyfills.src.js',
       'node_modules/systemjs/dist/system.src.js',
 
       // Polyfills
       'node_modules/core-js/client/shim.js',
+
+      // Promise
+      'node_modules/es6-promise/dist/es6-promise.js',
 
       // zone.js
       'node_modules/zone.js/dist/zone.js',
@@ -51,31 +54,32 @@ module.exports = function(config) {
       { pattern: 'node_modules/@angular/**/*.js', included: false, watched: false },
       { pattern: 'node_modules/@angular/**/*.js.map', included: false, watched: false },
 
-      { pattern: appBase + '/systemjs.config.js', included: false, watched: false },
-      { pattern: appBase + '/systemjs.config.extras.js', included: false, watched: false },
+      { pattern: 'dist/systemjs.config.js', included: false, watched: false },
+      { pattern: 'dist/systemjs-angular-loader.js', included: false, watched: false },
+      { pattern: 'dist/systemjs.config.extras.js', included: false, watched: false },
       'karma-test-shim.js', // optionally extend SystemJS mapping e.g., with barrels
 
       // transpiled application & spec code paths loaded via module imports
       { pattern: appBase + '**/*.js', included: false, watched: true },
-      { pattern: appBase + '**/*.js.map', included: false, watched: false},
+     // { pattern: appBase + '**/*.js.map', included: false, watched: false},
       { pattern: testingBase + '**/*.js', included: false, watched: true },
-      { pattern: testingBase + '**/*.js.map', included: false, watched: false},
+      //{ pattern: testingBase + '**/*.js.map', included: false, watched: false},
 
 
       // Asset (HTML & CSS) paths loaded via Angular's component compiler
       // (these paths need to be rewritten, see proxies section)
-      { pattern: appBase + '**/*.html', included: false, watched: true },
-      { pattern: appBase + '**/*.css', included: false, watched: true },
+      { pattern: appSrcBase + '**/*.html', included: false, watched: true },
+      { pattern: appSrcBase + '**/*.css', included: false, watched: true },
 
       // Paths for debugging with source maps in dev tools
-      { pattern: appBase + '**/*.ts', included: false, watched: false },
+      { pattern: appSrcBase + '**/*.ts', included: false, watched: false },
       { pattern: testingSrcBase + '**/*.ts', included: false, watched: false }
     ],
 
     // Proxied base paths for loading assets
     proxies: {
       // required for modules fetched by SystemJS
-      '/base/src/node_modules/': '/base/node_modules/'
+      '/base/dist/node_modules/': '/base/node_modules/'
     },
     
     coverageIstanbulReporter: { 

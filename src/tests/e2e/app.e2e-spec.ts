@@ -9,7 +9,9 @@ describe('Movie Search E2E Tests', function () {
   });
 
   it('should display: ' + expectedMsg, function () {
-    expect(element(by.tagName('h1')).getText()).toEqual(expectedMsg);
+    element(by.className('searchTitle')).getText().then((text: string) => {
+      expect(text).toEqual(expectedMsg);
+    });
   });
 
 });

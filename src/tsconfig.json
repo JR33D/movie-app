@@ -1,20 +1,27 @@
 {
+  "version": "1.5.0-beta",
+  "compileOnSave": false,
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "module": "commonjs",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "emitDecoratorMetadata": true,
+    "isolatedModules": false,
+    "jsx": "react",
     "experimentalDecorators": true,
-    "lib": [ "es2015", "dom" ],
-    "noImplicitAny": true,
+    "emitDecoratorMetadata": true,
+    "noImplicitAny": false,
+    "removeComments": false,
+    "noLib": false,
+    "preserveConstEnums": true,
     "suppressImplicitAnyIndexErrors": true,
-    "typeRoots": [
-      "../node_modules/@types/"
-    ]
+    "allowJs": true,
+    "skipLibCheck": true,
+    "outDir": "../dist"
   },
-  "compileOnSave": true,
   "exclude": [
+    "dist/",
     "node_modules/*"
+  ],
+  "filesGlob": [
+    "src/**/*.ts"
   ]
 }

@@ -35,9 +35,12 @@ var allSpecFiles = Object.keys(window.__karma__.files)
 
 System.config({
   // Base URL for System.js calls. 'base/' is where Karma serves files from.
-  baseURL: 'base/src',
+  baseURL: 'base/dist/',
   // Extend usual application package list with test folder
-  packages: { 'testing': { main: 'index.js', defaultExtension: 'js' } },
+  packages: { 
+    app: { format: 'register', defaultExtension: 'js' },
+    tests: { format: 'register', defaultExtension: 'js' },
+ },
 
   // Assume npm: is set in `paths` in systemjs.config
   // Map the angular testing umd bundles

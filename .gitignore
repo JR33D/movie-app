@@ -6,6 +6,7 @@ src/**/**/*.js.map
 *.map
 _test-output/
 npm-debug.log.*
+dist/
 
 
 #### Allowed Files ####

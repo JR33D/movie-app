@@ -46,6 +46,16 @@ h4 {
 .grid-pad > [class*='col-']:last-of-type {
   padding-right: 20px;
 }
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.clear {
+  clear: none;
+}
+
 @media (max-width: 600px) {
   .module {
     font-size: 10px;

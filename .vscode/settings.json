@@ -2,11 +2,7 @@
 {
     "explorer.openEditors.visible": 5,
     "files.exclude": {
-        "**/.git": true,
-        "src/app/**/*.js": true,
-        "src/tests/**/*.js": true,
-        "**/main.js": true,
-        "**/*.js.map": true
+        "**/.git": true
     },
     "typescript.tsdk": "node_modules/typescript/lib"
 }
