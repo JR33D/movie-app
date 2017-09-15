@@ -2,7 +2,8 @@
 {
     "explorer.openEditors.visible": 5,
     "files.exclude": {
-        "**/.git": true
+        "**/.git": true,
+        "**/*.js": {"when": "$(basename).ts"}
     },
     "typescript.tsdk": "node_modules/typescript/lib"
 }

@@ -38,8 +38,7 @@ System.config({
   baseURL: 'base/dist/',
   // Extend usual application package list with test folder
   packages: { 
-    app: { format: 'register', defaultExtension: 'js' },
-    tests: { format: 'register', defaultExtension: 'js' },
+    tests: { defaultExtension: 'js' }
  },
 
   // Assume npm: is set in `paths` in systemjs.config
